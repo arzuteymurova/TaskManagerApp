@@ -17,7 +17,6 @@ export class TaskService {
 
   addTask(task: Task) {
     this.tasks.push(task);
-    debugger
   }
 
   deleteTask(index: number) {

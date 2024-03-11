@@ -31,9 +31,10 @@ export class TaskListComponent implements OnInit {
   onCheck(index: number) {
     this.task=this.tasks[index];
     this.tasks[index].isCompleted = !this.tasks[index].isCompleted;
+    
     if (index !== -1) {
-      this.tasks.splice(index, 1); // Remove the task from its current position
-      this.tasks.push(this.task); // Push it to the end
+      this.tasks.splice(index, 1); 
+      this.tasks.push(this.task); 
     }
   }
 

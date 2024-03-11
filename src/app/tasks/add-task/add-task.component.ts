@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TaskService } from '../../shared/task.service';
-import { FormControl, FormGroup, NgForm} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import { Task } from '../task.model';
 
 @Component({
@@ -11,30 +11,43 @@ import { Task } from '../task.model';
 })
 export class AddTaskComponent {
   
-  constructor(private taskService:TaskService){
+  constructor(private taskService:TaskService,private formBuilder:FormBuilder){
     
   }
 
-  taskForm = new FormGroup({
-    name: new FormControl(''),
-    dueDate: new FormControl(''),
-  });
+  taskForm=this.formBuilder.group({
+    name:[""],
+    dueDate:[""]
+  })
 
-  task:Task;
-  
-
-
-  onSubmit(form: NgForm) {
-    console.log(form);
-
+    
+  onSubmit(){
     this.taskService.addTask({
-      name: form.controls['name'].value,
-      dueDate:form.controls['dueDate'].value,
-      isCompleted: false
-    })
+      name:this.taskForm.value.name,
+      dueDate:this.taskForm.value.dueDate,
+      isCompleted:false
+    });
 
-    form.reset();
+    this.taskForm.reset();
   }
+
+
+  // taskForm = new FormGroup({
+  //   name: new FormControl(''),
+  //   dueDate: new FormControl(''),
+  // });
+
+  // onSubmit(form: NgForm) {
+  //   console.log(form);
+
+  //   this.taskService.addTask({
+  //     name: form.controls['name'].value,
+  //     dueDate:form.controls['dueDate'].value,
+  //     isCompleted: false
+  //   })
+
+  //   form.reset();
+  // }
 
 
 }

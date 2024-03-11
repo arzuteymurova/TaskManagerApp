@@ -1,10 +1,24 @@
-<form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+<!-- <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
     <div class="row align-items-center px-5">
         <div class="col-7">
             <input ngModel name="name"  type="text" class="form-control mb-2" id="inlineFormInput" placeholder="New task">
         </div>
         <div class="col-3">
             <input ngModel name="dueDate"  type="date" class="form-control mb-2" id="inlineFormInput" placeholder="Due date">
+        </div>
+        <div class="col-2">
+            <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+</form> -->
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" >
+    <div class="row align-items-center px-5">
+        <div class="col-7">
+            <input formControlName="name"  type="text" class="form-control mb-2" id="inlineFormInput" placeholder="New task">
+        </div>
+        <div class="col-3">
+            <input formControlName="dueDate"  type="date" class="form-control mb-2" id="inlineFormInput" placeholder="Due date">
         </div>
         <div class="col-2">
             <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Add</button>
